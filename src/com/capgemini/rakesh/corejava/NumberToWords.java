@@ -15,14 +15,16 @@ public class NumberToWords {
 		int thousandWords;
 		int hundredWords;
 		int tenWords;
-		int oneWords;
-		String words = null;
 		String ones[] = { "", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven",
-				"Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eightteen", "Nineteen" };
-		String tens[] = { "", "", "Twenty", "Thirty", "Forty", "Fivty", "Sixty", "Seventy", "Eighty", "Ninty" };
+				"Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen" };
+		String tens[] = { "", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety" };
 
-		System.out.println("enter a four digit number");
+		System.out.println("Enter a number : ");
 		number = sc.nextInt();
+		if(number > 9999) {
+			System.err.println("You have entered an invalid number \nPlease enter a value less than 10000");
+			numberToWordsLogic();
+		}
 		if (number == 0) {
 			System.out.print("Zero");
 		}
@@ -35,7 +37,11 @@ public class NumberToWords {
 		if (number <= 999 && number > 99) {
 			hundredWords = number / 100;
 			// words= words+ ones[hundreds]+ " Hundred";
-			System.out.print(ones[hundredWords] + " Hundred and ");
+			if(number % 100 == 0) {
+				System.out.print(ones[hundredWords] + " Hundred");
+			} else {
+				System.out.print(ones[hundredWords] + " Hundred and ");
+			}
 			number = number % 100;
 
 		}
@@ -47,7 +53,6 @@ public class NumberToWords {
 		if (number < 20) {
 			System.out.print(ones[number]);
 		}
-
 	}
 
 }
